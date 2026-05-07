@@ -156,84 +156,7 @@
   <div class="setup-card">
     <div class="setup-logo">📈</div>
     <h1>Persoonlijke Groei Tracker</h1>
-    <p class="setup-sub">Stel je nulmeting in en start je groeitraject</p>
-
-    <!-- AI PROVIDER -->
-    <div class="form-group">
-      <label class="form-label">Kies je AI</label>
-      <div class="ai-tabs" id="ai-tabs">
-        <button class="ai-tab active" data-provider="ollama" type="button">
-          <span class="ai-tab-icon">🦙</span>
-          <span class="ai-tab-name">Ollama</span>
-          <span class="ai-tab-sub">Lokaal &amp; gratis</span>
-        </button>
-        <button class="ai-tab" data-provider="lmstudio" type="button">
-          <span class="ai-tab-icon">🖥️</span>
-          <span class="ai-tab-name">LM Studio</span>
-          <span class="ai-tab-sub">Lokaal &amp; gratis</span>
-        </button>
-        <button class="ai-tab" data-provider="gemini" type="button">
-          <span class="ai-tab-icon">✨</span>
-          <span class="ai-tab-name">Gemini</span>
-          <span class="ai-tab-sub">Gratis API key</span>
-        </button>
-      </div>
-
-      <!-- Ollama config -->
-      <div id="cfg-ollama" class="ai-config">
-        <p class="ai-config-info">
-          <strong>Installeer Ollama</strong> op <a href="https://ollama.com" target="_blank">ollama.com</a>, daarna run je in een terminal:<br>
-          <code>ollama serve</code> &nbsp;en&nbsp; <code>ollama pull llama3.2</code>
-        </p>
-        <div class="field-row">
-          <div>
-            <label class="form-label" style="margin-bottom:5px">Model</label>
-            <select id="ollama-model">
-              <option value="llama3.2">llama3.2 (aanbevolen)</option>
-              <option value="llama3.1">llama3.1</option>
-              <option value="mistral">mistral</option>
-              <option value="phi4">phi4</option>
-              <option value="gemma3">gemma3</option>
-              <option value="qwen2.5">qwen2.5</option>
-              <option value="custom">Aangepast model...</option>
-            </select>
-          </div>
-          <div id="ollama-custom-wrap" hidden>
-            <label class="form-label" style="margin-bottom:5px">Model naam</label>
-            <input type="text" id="ollama-custom-model" placeholder="bijv. deepseek-r1:7b" />
-          </div>
-        </div>
-      </div>
-
-      <!-- LM Studio config -->
-      <div id="cfg-lmstudio" class="ai-config" hidden>
-        <p class="ai-config-info">
-          <strong>Open LM Studio</strong> (<a href="https://lmstudio.ai" target="_blank">lmstudio.ai</a>), laad een model en start de <strong>Local Server</strong> via het server-icoon.<br>
-          De app verbindt automatisch met <code>http://localhost:1234</code>.
-        </p>
-      </div>
-
-      <!-- Gemini config -->
-      <div id="cfg-gemini" class="ai-config" hidden>
-        <p class="ai-config-info">
-          Gratis key aanmaken op <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a> — geen betaling vereist.
-        </p>
-        <div class="field-row">
-          <div>
-            <label class="form-label" style="margin-bottom:5px">API Key</label>
-            <input type="password" id="gemini-key" placeholder="AIza..." />
-          </div>
-          <div>
-            <label class="form-label" style="margin-bottom:5px">Model</label>
-            <select id="gemini-model">
-              <option value="gemini-2.0-flash">gemini-2.0-flash (snel)</option>
-              <option value="gemini-1.5-flash">gemini-1.5-flash</option>
-              <option value="gemini-1.5-pro">gemini-1.5-pro (slimmer)</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
+    <p class="setup-sub">Selecteer je leerdoelen en stel je beginscore in</p>
 
     <!-- GOAL SELECTOR -->
     <div class="form-group">
@@ -279,6 +202,81 @@
     </div>
     <div class="upload-card">
       <div class="card-title">📁 Bestanden uploaden &amp; analyseren</div>
+
+      <!-- AI PROVIDER (pagina 2) -->
+      <div style="margin-bottom:16px">
+        <label class="form-label">Kies je AI</label>
+        <div class="ai-tabs" id="ai-tabs">
+          <button class="ai-tab active" data-provider="ollama" type="button">
+            <span class="ai-tab-icon">🦙</span>
+            <span class="ai-tab-name">Ollama</span>
+            <span class="ai-tab-sub">Lokaal &amp; gratis</span>
+          </button>
+          <button class="ai-tab" data-provider="lmstudio" type="button">
+            <span class="ai-tab-icon">🖥️</span>
+            <span class="ai-tab-name">LM Studio</span>
+            <span class="ai-tab-sub">Lokaal &amp; gratis</span>
+          </button>
+          <button class="ai-tab" data-provider="gemini" type="button">
+            <span class="ai-tab-icon">✨</span>
+            <span class="ai-tab-name">Gemini</span>
+            <span class="ai-tab-sub">Gratis API key</span>
+          </button>
+        </div>
+
+        <div id="cfg-ollama" class="ai-config">
+          <p class="ai-config-info">
+            <strong>Installeer Ollama</strong> op <a href="https://ollama.com" target="_blank">ollama.com</a>, daarna run in een terminal:<br>
+            <code>ollama serve</code> &nbsp;en&nbsp; <code>ollama pull llama3.2</code>
+          </p>
+          <div class="field-row">
+            <div>
+              <label class="form-label" style="margin-bottom:5px">Model</label>
+              <select id="ollama-model">
+                <option value="llama3.2">llama3.2 (aanbevolen)</option>
+                <option value="llama3.1">llama3.1</option>
+                <option value="mistral">mistral</option>
+                <option value="phi4">phi4</option>
+                <option value="gemma3">gemma3</option>
+                <option value="qwen2.5">qwen2.5</option>
+                <option value="custom">Aangepast model...</option>
+              </select>
+            </div>
+            <div id="ollama-custom-wrap" hidden>
+              <label class="form-label" style="margin-bottom:5px">Model naam</label>
+              <input type="text" id="ollama-custom-model" placeholder="bijv. deepseek-r1:7b" />
+            </div>
+          </div>
+        </div>
+
+        <div id="cfg-lmstudio" class="ai-config" hidden>
+          <p class="ai-config-info">
+            <strong>Open LM Studio</strong> (<a href="https://lmstudio.ai" target="_blank">lmstudio.ai</a>), laad een model en start de <strong>Local Server</strong> via het server-icoon.<br>
+            De app verbindt automatisch met <code>http://localhost:1234</code>.
+          </p>
+        </div>
+
+        <div id="cfg-gemini" class="ai-config" hidden>
+          <p class="ai-config-info">
+            Gratis key aanmaken op <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a> — geen betaling vereist.
+          </p>
+          <div class="field-row">
+            <div>
+              <label class="form-label" style="margin-bottom:5px">API Key</label>
+              <input type="password" id="gemini-key" placeholder="AIza..." />
+            </div>
+            <div>
+              <label class="form-label" style="margin-bottom:5px">Model</label>
+              <select id="gemini-model">
+                <option value="gemini-2.0-flash">gemini-2.0-flash (snel)</option>
+                <option value="gemini-1.5-flash">gemini-1.5-flash</option>
+                <option value="gemini-1.5-pro">gemini-1.5-pro (slimmer)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div id="upload-drop" class="upload-drop">
         <input id="file-input" type="file" multiple accept=".txt,.md,.csv,.json,.html,.log,.xml,.pdf,.docx,.doc" style="display:none" />
         <div class="upload-icon">📄</div>
@@ -367,9 +365,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
 // ── SETUP ──────────────────────────────────────────────────────────────────
 function initSetup() {
   buildDropdown();
-  bindAiTabs();
   bindDropdown();
-  bindOllamaModel();
   $('start-btn').addEventListener('click', handleStart);
 }
 
@@ -485,11 +481,7 @@ function resolveAiConfig() {
 function handleStart() {
   const err = $('setup-error');
   if (S.selected.length === 0) { err.textContent = 'Selecteer minimaal één leerdoel.'; err.hidden = false; return; }
-  if (S.provider === 'gemini' && !$('gemini-key').value.trim()) {
-    err.textContent = 'Voer je Gemini API key in.'; err.hidden = false; return;
-  }
   err.hidden = true;
-  S.apiUrl  = resolveAiConfig();
   S.baseline = { ...S.sliders };
   S.current  = { ...S.sliders };
   S.reasons  = Object.fromEntries(S.selected.map(g => [g, []]));
@@ -499,7 +491,22 @@ function handleStart() {
 }
 
 // ── DASHBOARD ──────────────────────────────────────────────────────────────
-function initDashboard() { renderBars(); buildChart(); refreshHeader(); initUpload(); }
+function initDashboard() { renderBars(); buildChart(); refreshHeader(); initAiTabs(); initUpload(); }
+
+function initAiTabs() {
+  $('ai-tabs').addEventListener('click', e => {
+    const tab = e.target.closest('.ai-tab');
+    if (!tab) return;
+    S.provider = tab.dataset.provider;
+    document.querySelectorAll('.ai-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    ['ollama','lmstudio','gemini'].forEach(p => $('cfg-' + p).hidden = (p !== S.provider));
+  });
+  $('ollama-model').addEventListener('change', function() {
+    $('ollama-custom-wrap').hidden = this.value !== 'custom';
+    S.model = this.value !== 'custom' ? this.value : '';
+  });
+}
 
 const delta = g => (S.current[g] ?? 0) - (S.baseline[g] ?? 0);
 
@@ -638,6 +645,11 @@ async function analyzeFile(file) {
   const id = Date.now() + '-' + Math.random().toString(36).slice(2);
   addFileRow(id, file.name);
   try {
+    // Resolve AI config at upload time so it always uses the current selection
+    S.apiUrl = resolveAiConfig();
+    if (S.provider === 'gemini' && !S.apiKey) {
+      throw new Error('Voer eerst je Gemini API key in hierboven');
+    }
     const rawText = await extractText(file);
     const excerpt = rawText.replace(/\s+/g, ' ').trim().slice(0, 4000);
     if (!excerpt) throw new Error('Bestand lijkt leeg of onleesbaar');
