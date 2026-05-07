@@ -8,279 +8,234 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --blue: #0052CC;
-      --blue-h: #0065FF;
-      --blue-bg: #DEEBFF;
-      --bg: #F4F5F7;
-      --white: #FFFFFF;
-      --text: #172B4D;
-      --sub: #5E6C84;
-      --border: #DFE1E6;
-      --green: #36B37E;
-      --green-bg: #E3FCEF;
-      --red: #FF5630;
-      --sh: 0 1px 3px rgba(9,30,66,.12), 0 0 0 1px rgba(9,30,66,.04);
-      --sh-lg: 0 8px 32px rgba(9,30,66,.18);
-      --r: 6px;
-      --rl: 10px;
+      --blue:#0052CC; --blue-h:#0065FF; --blue-bg:#DEEBFF;
+      --bg:#F4F5F7; --white:#FFFFFF; --text:#172B4D; --sub:#5E6C84;
+      --border:#DFE1E6; --green:#36B37E; --green-bg:#E3FCEF;
+      --red:#FF5630; --orange:#FF8B00; --orange-bg:#FFFAE6;
+      --sh:0 1px 3px rgba(9,30,66,.12),0 0 0 1px rgba(9,30,66,.04);
+      --sh-lg:0 8px 32px rgba(9,30,66,.18);
+      --r:6px; --rl:10px;
     }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:var(--bg); color:var(--text); min-height:100vh; -webkit-font-smoothing:antialiased; }
 
     /* ── HEADER ── */
-    .app-header {
-      background: var(--blue);
-      padding: 0 24px;
-      height: 52px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,.22);
-    }
-    .app-header h1 { color: #fff; font-size: 16px; font-weight: 700; letter-spacing: -.2px; }
-    .header-total {
-      margin-left: auto;
-      background: rgba(255,255,255,.18);
-      color: #fff;
-      padding: 4px 14px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 700;
-    }
+    .app-header { background:var(--blue); padding:0 24px; height:52px; display:flex; align-items:center; gap:10px; position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,.22); }
+    .app-header h1 { color:#fff; font-size:16px; font-weight:700; letter-spacing:-.2px; }
+    .header-total { margin-left:auto; background:rgba(255,255,255,.18); color:#fff; padding:4px 14px; border-radius:20px; font-size:13px; font-weight:700; }
 
     /* ── SETUP ── */
-    .setup-screen {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .setup-card {
-      background: var(--white);
-      border-radius: var(--rl);
-      padding: 40px;
-      width: 100%;
-      max-width: 560px;
-      box-shadow: var(--sh-lg);
-    }
-    .setup-logo { font-size: 44px; text-align: center; margin-bottom: 10px; }
-    .setup-card h1 {
-      font-size: 22px; font-weight: 800; text-align: center;
-      color: var(--blue); margin-bottom: 6px; letter-spacing: -.3px;
-    }
-    .setup-sub { text-align: center; color: var(--sub); margin-bottom: 32px; font-size: 14px; }
+    .setup-screen { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
+    .setup-card { background:var(--white); border-radius:var(--rl); padding:40px; width:100%; max-width:600px; box-shadow:var(--sh-lg); }
+    .setup-logo { font-size:44px; text-align:center; margin-bottom:10px; }
+    .setup-card h1 { font-size:22px; font-weight:800; text-align:center; color:var(--blue); margin-bottom:6px; letter-spacing:-.3px; }
+    .setup-sub { text-align:center; color:var(--sub); margin-bottom:32px; font-size:14px; }
 
-    /* form */
-    .form-group { margin-bottom: 22px; }
-    .form-label {
-      display: block; font-weight: 700; font-size: 12px; color: var(--sub);
-      margin-bottom: 8px; text-transform: uppercase; letter-spacing: .5px;
-    }
-    .form-hint { display: block; color: var(--sub); font-size: 12px; margin-top: 5px; }
+    .form-group { margin-bottom:22px; }
+    .form-label { display:block; font-weight:700; font-size:12px; color:var(--sub); margin-bottom:8px; text-transform:uppercase; letter-spacing:.5px; }
+    .form-hint { display:block; color:var(--sub); font-size:12px; margin-top:5px; }
+    .form-hint a { color:var(--blue); }
+
+    /* AI provider tabs */
+    .ai-tabs { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:0; }
+    .ai-tab { padding:10px 8px; border:2px solid var(--border); border-radius:var(--r); cursor:pointer; text-align:center; transition:border-color .15s,background .15s; background:var(--white); font-family:inherit; }
+    .ai-tab:hover { border-color:var(--blue); }
+    .ai-tab.active { border-color:var(--blue); background:var(--blue-bg); }
+    .ai-tab-icon { font-size:22px; display:block; margin-bottom:4px; }
+    .ai-tab-name { font-size:12px; font-weight:700; color:var(--text); }
+    .ai-tab-sub  { font-size:11px; color:var(--sub); }
+
+    .ai-config { margin-top:12px; padding:14px; background:var(--bg); border-radius:var(--r); border:1px solid var(--border); }
+    .ai-config-info { font-size:13px; color:var(--sub); margin-bottom:10px; line-height:1.6; }
+    .ai-config-info code { background:#e4e6ea; padding:1px 5px; border-radius:3px; font-size:12px; font-family:'Courier New',monospace; }
+    .ai-config-info strong { color:var(--text); }
 
     /* multi-select */
-    .multi-select { position: relative; }
-    .ms-trigger {
-      width: 100%; padding: 9px 14px;
-      background: var(--white); border: 2px solid var(--border);
-      border-radius: var(--r); font-size: 14px; color: var(--text);
-      cursor: pointer; display: flex; justify-content: space-between;
-      align-items: center; transition: border-color .15s;
-      font-family: inherit; text-align: left;
-    }
-    .ms-trigger:hover, .ms-trigger:focus { border-color: var(--blue); outline: none; }
-    .chevron { font-size: 10px; color: var(--sub); }
-    .ms-dropdown {
-      position: absolute; top: calc(100% + 4px); left: 0; right: 0;
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: var(--r); box-shadow: var(--sh-lg);
-      z-index: 50; padding: 6px 0; max-height: 240px; overflow-y: auto;
-    }
-    .goal-opt {
-      display: flex; align-items: center; gap: 10px;
-      padding: 9px 16px; cursor: pointer; font-size: 14px;
-      transition: background .1s; user-select: none;
-    }
-    .goal-opt:hover { background: var(--blue-bg); }
-    .goal-opt input[type=checkbox] { width: 15px; height: 15px; accent-color: var(--blue); cursor: pointer; flex-shrink: 0; }
+    .multi-select { position:relative; }
+    .ms-trigger { width:100%; padding:9px 14px; background:var(--white); border:2px solid var(--border); border-radius:var(--r); font-size:14px; color:var(--text); cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:border-color .15s; font-family:inherit; text-align:left; }
+    .ms-trigger:hover,.ms-trigger:focus { border-color:var(--blue); outline:none; }
+    .chevron { font-size:10px; color:var(--sub); }
+    .ms-dropdown { position:absolute; top:calc(100% + 4px); left:0; right:0; background:var(--white); border:1px solid var(--border); border-radius:var(--r); box-shadow:var(--sh-lg); z-index:50; padding:6px 0; max-height:280px; overflow-y:auto; }
+    .ms-cat { padding:7px 16px 3px; font-size:10px; font-weight:800; color:var(--sub); text-transform:uppercase; letter-spacing:.6px; background:var(--bg); }
+    .goal-opt { display:flex; align-items:center; gap:10px; padding:8px 16px; cursor:pointer; font-size:13px; transition:background .1s; user-select:none; }
+    .goal-opt:hover { background:var(--blue-bg); }
+    .goal-opt input[type=checkbox] { width:15px; height:15px; accent-color:var(--blue); cursor:pointer; flex-shrink:0; }
 
-    /* tags */
-    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-    .tag {
-      background: var(--blue-bg); color: var(--blue);
-      padding: 3px 10px; border-radius: 20px; font-size: 12px;
-      font-weight: 600; display: flex; align-items: center; gap: 5px;
-    }
-    .tag-x {
-      background: none; border: none; color: var(--blue);
-      cursor: pointer; font-size: 14px; line-height: 1; padding: 0;
-      opacity: .7; font-family: inherit;
-    }
-    .tag-x:hover { opacity: 1; }
+    .tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+    .tag { background:var(--blue-bg); color:var(--blue); padding:3px 10px; border-radius:20px; font-size:12px; font-weight:600; display:flex; align-items:center; gap:5px; }
+    .tag-x { background:none; border:none; color:var(--blue); cursor:pointer; font-size:14px; line-height:1; padding:0; opacity:.7; font-family:inherit; }
+    .tag-x:hover { opacity:1; }
 
-    /* score sliders */
-    .score-list { border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
-    .score-row {
-      display: flex; align-items: center;
-      padding: 10px 14px; border-bottom: 1px solid var(--border); gap: 12px;
-    }
-    .score-row:last-child { border-bottom: none; }
-    .score-name { font-size: 13px; font-weight: 600; min-width: 130px; }
-    .slider-wrap { display: flex; align-items: center; gap: 10px; flex: 1; }
-    .slider-wrap input[type=range] {
-      flex: 1; accent-color: var(--blue); cursor: pointer; height: 4px;
-    }
-    .score-num { font-size: 15px; font-weight: 800; color: var(--blue); min-width: 32px; text-align: right; }
+    .score-list { border:1px solid var(--border); border-radius:var(--r); overflow:hidden; }
+    .score-row { display:flex; align-items:center; padding:10px 14px; border-bottom:1px solid var(--border); gap:12px; }
+    .score-row:last-child { border-bottom:none; }
+    .score-name { font-size:13px; font-weight:600; min-width:160px; }
+    .slider-wrap { display:flex; align-items:center; gap:10px; flex:1; }
+    .slider-wrap input[type=range] { flex:1; accent-color:var(--blue); cursor:pointer; }
+    .score-num { font-size:15px; font-weight:800; color:var(--blue); min-width:32px; text-align:right; }
 
-    /* api key */
-    .api-input {
-      width: 100%; padding: 9px 14px;
-      border: 2px solid var(--border); border-radius: var(--r);
-      font-size: 13px; font-family: 'Courier New', monospace;
-      transition: border-color .15s; background: var(--white); color: var(--text);
-    }
-    .api-input:focus { border-color: var(--blue); outline: none; }
+    input[type=text], input[type=password], input[type=url] { width:100%; padding:9px 14px; border:2px solid var(--border); border-radius:var(--r); font-size:13px; font-family:inherit; transition:border-color .15s; background:var(--white); color:var(--text); }
+    input[type=text]:focus, input[type=password]:focus, input[type=url]:focus { border-color:var(--blue); outline:none; }
+    select { width:100%; padding:9px 14px; border:2px solid var(--border); border-radius:var(--r); font-size:13px; font-family:inherit; background:var(--white); color:var(--text); cursor:pointer; }
+    select:focus { border-color:var(--blue); outline:none; }
 
-    /* error / button */
-    .error-box {
-      background: #FFF0EE; border: 1px solid #FFBDAD;
-      color: var(--red); padding: 10px 14px; border-radius: var(--r);
-      font-size: 13px; margin-bottom: 16px; font-weight: 500;
-    }
-    .btn {
-      padding: 10px 20px; border-radius: var(--r); font-size: 14px;
-      font-weight: 600; cursor: pointer; border: none;
-      font-family: inherit; transition: background .15s, transform .1s;
-      display: inline-flex; align-items: center; gap: 6px;
-    }
-    .btn:active { transform: scale(.98); }
-    .btn-primary { background: var(--blue); color: #fff; }
-    .btn-primary:hover { background: var(--blue-h); }
-    .btn-full { width: 100%; justify-content: center; padding: 13px; font-size: 15px; }
+    .field-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+
+    .error-box { background:#FFF0EE; border:1px solid #FFBDAD; color:var(--red); padding:10px 14px; border-radius:var(--r); font-size:13px; margin-bottom:16px; font-weight:500; }
+    .info-box { background:var(--blue-bg); border:1px solid #8CB4FF; color:var(--blue); padding:10px 14px; border-radius:var(--r); font-size:13px; margin-bottom:16px; }
+
+    .btn { padding:10px 20px; border-radius:var(--r); font-size:14px; font-weight:600; cursor:pointer; border:none; font-family:inherit; transition:background .15s,transform .1s; display:inline-flex; align-items:center; gap:6px; }
+    .btn:active { transform:scale(.98); }
+    .btn-primary { background:var(--blue); color:#fff; }
+    .btn-primary:hover { background:var(--blue-h); }
+    .btn-full { width:100%; justify-content:center; padding:13px; font-size:15px; }
 
     /* ── DASHBOARD ── */
-    .dashboard { padding: 20px 24px; max-width: 1400px; margin: 0 auto; }
-    .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .dashboard { padding:20px 24px; max-width:1400px; margin:0 auto; }
+    .dash-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+    .card { background:var(--white); border-radius:var(--rl); padding:20px 22px; box-shadow:var(--sh); }
+    .card-title { font-size:12px; font-weight:700; color:var(--sub); text-transform:uppercase; letter-spacing:.6px; margin-bottom:18px; }
+    .spider-wrap { max-width:320px; margin:0 auto; }
 
-    .card { background: var(--white); border-radius: var(--rl); padding: 20px 22px; box-shadow: var(--sh); }
-    .card-title {
-      font-size: 12px; font-weight: 700; color: var(--sub);
-      text-transform: uppercase; letter-spacing: .6px; margin-bottom: 18px;
-    }
-
-    .spider-wrap { max-width: 320px; margin: 0 auto; }
-
-    /* stat bars */
-    .stat-bars { display: flex; flex-direction: column; gap: 14px; }
-    .sbar-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
-    .sbar-name { font-size: 13px; font-weight: 600; }
-    .sbar-right { display: flex; align-items: center; gap: 7px; }
-    .sbar-score { font-size: 15px; font-weight: 800; color: var(--blue); font-variant-numeric: tabular-nums; }
-    .delta-badge {
-      background: var(--green-bg); color: var(--green);
-      font-size: 11px; font-weight: 800; padding: 2px 8px;
-      border-radius: 20px; cursor: pointer; border: none;
-      font-family: inherit; transition: background .15s, transform .1s; line-height: 1.5;
-    }
-    .delta-badge:hover { background: #b3e9cf; transform: scale(1.05); }
-    .sbar-track { height: 7px; background: var(--bg); border-radius: 4px; overflow: hidden; }
-    .sbar-fill {
-      height: 100%; background: linear-gradient(90deg, #0052CC, #0065FF);
-      border-radius: 4px; transition: width .7s cubic-bezier(.4,0,.2,1);
-    }
+    .stat-bars { display:flex; flex-direction:column; gap:14px; }
+    .sbar-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; }
+    .sbar-name { font-size:13px; font-weight:600; }
+    .sbar-right { display:flex; align-items:center; gap:7px; }
+    .sbar-score { font-size:15px; font-weight:800; color:var(--blue); font-variant-numeric:tabular-nums; }
+    .delta-badge { background:var(--green-bg); color:var(--green); font-size:11px; font-weight:800; padding:2px 8px; border-radius:20px; cursor:pointer; border:none; font-family:inherit; transition:background .15s,transform .1s; line-height:1.5; }
+    .delta-badge:hover { background:#b3e9cf; transform:scale(1.05); }
+    .sbar-track { height:7px; background:var(--bg); border-radius:4px; overflow:hidden; }
+    .sbar-fill { height:100%; background:linear-gradient(90deg,#0052CC,#0065FF); border-radius:4px; transition:width .7s cubic-bezier(.4,0,.2,1); }
 
     /* upload */
-    .upload-card { background: var(--white); border-radius: var(--rl); padding: 20px 22px; box-shadow: var(--sh); }
-    .upload-drop {
-      border: 2px dashed var(--border); border-radius: var(--r);
-      padding: 28px 20px; text-align: center;
-      cursor: pointer; transition: border-color .15s, background .15s;
-    }
-    .upload-drop:hover, .upload-drop.drag-over { border-color: var(--blue); background: var(--blue-bg); }
-    .upload-icon { font-size: 32px; margin-bottom: 10px; }
-    .upload-drop p { color: var(--sub); font-size: 14px; line-height: 1.6; }
-    .upload-drop strong { color: var(--blue); }
-    .upload-drop small { font-size: 12px; color: var(--sub); display: block; margin-top: 4px; }
-    .file-list { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
-    .file-row {
-      display: flex; align-items: center; gap: 10px;
-      padding: 9px 13px; background: var(--bg); border-radius: var(--r); font-size: 13px;
-    }
-    .file-name { flex: 1; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .fbadge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 12px; white-space: nowrap; }
-    .fbadge.analyzing { background: #FFFAE6; color: #FF8B00; }
-    .fbadge.done      { background: var(--green-bg); color: var(--green); }
-    .fbadge.error     { background: #FFF0EE; color: var(--red); }
-    .spinner {
-      width: 14px; height: 14px; border: 2px solid var(--border);
-      border-top-color: var(--blue); border-radius: 50%;
-      animation: spin .6s linear infinite; flex-shrink: 0;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    .upload-card { background:var(--white); border-radius:var(--rl); padding:20px 22px; box-shadow:var(--sh); }
+    .upload-drop { border:2px dashed var(--border); border-radius:var(--r); padding:28px 20px; text-align:center; cursor:pointer; transition:border-color .15s,background .15s; }
+    .upload-drop:hover,.upload-drop.drag-over { border-color:var(--blue); background:var(--blue-bg); }
+    .upload-icon { font-size:32px; margin-bottom:10px; }
+    .upload-drop p { color:var(--sub); font-size:14px; line-height:1.6; }
+    .upload-drop strong { color:var(--blue); }
+    .upload-drop small { font-size:12px; color:var(--sub); display:block; margin-top:4px; }
+    .file-list { margin-top:14px; display:flex; flex-direction:column; gap:8px; }
+    .file-row { display:flex; align-items:center; gap:10px; padding:9px 13px; background:var(--bg); border-radius:var(--r); font-size:13px; }
+    .file-name { flex:1; font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .fbadge { font-size:11px; font-weight:700; padding:2px 8px; border-radius:12px; white-space:nowrap; }
+    .fbadge.analyzing { background:var(--orange-bg); color:var(--orange); }
+    .fbadge.done      { background:var(--green-bg); color:var(--green); }
+    .fbadge.error     { background:#FFF0EE; color:var(--red); }
+    .spinner { width:14px; height:14px; border:2px solid var(--border); border-top-color:var(--blue); border-radius:50%; animation:spin .6s linear infinite; flex-shrink:0; }
+    @keyframes spin { to { transform:rotate(360deg); } }
 
-    /* ── MODAL ── */
-    .modal-overlay {
-      position: fixed; inset: 0; background: rgba(9,30,66,.54);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 300; padding: 24px;
-    }
-    .modal {
-      background: var(--white); border-radius: var(--rl);
-      padding: 28px; max-width: 480px; width: 100%;
-      box-shadow: var(--sh-lg); position: relative;
-      animation: slideUp .2s ease;
-    }
-    @keyframes slideUp { from { transform: translateY(12px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    .modal-close {
-      position: absolute; top: 14px; right: 14px;
-      background: var(--bg); border: none; width: 30px; height: 30px;
-      border-radius: 50%; cursor: pointer; font-size: 18px;
-      display: flex; align-items: center; justify-content: center;
-      transition: background .15s; color: var(--sub); font-family: inherit;
-    }
-    .modal-close:hover { background: var(--border); }
-    .modal-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; padding-right: 36px; }
-    .modal-goal { font-size: 20px; font-weight: 800; letter-spacing: -.3px; }
-    .modal-delta-chip { background: var(--green-bg); color: var(--green); font-size: 18px; font-weight: 800; padding: 3px 14px; border-radius: 20px; }
-    .modal-sub { font-size: 13px; color: var(--sub); margin-bottom: 20px; }
-    .reason-list { display: flex; flex-direction: column; gap: 10px; max-height: 340px; overflow-y: auto; }
-    .reason-item {
-      padding: 13px 14px; background: var(--bg); border-radius: var(--r);
-      border-left: 3px solid var(--blue); font-size: 13px; line-height: 1.65;
-    }
-    .reason-lbl { font-size: 11px; font-weight: 700; color: var(--sub); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 5px; }
+    /* modal */
+    .modal-overlay { position:fixed; inset:0; background:rgba(9,30,66,.54); display:flex; align-items:center; justify-content:center; z-index:300; padding:24px; }
+    .modal { background:var(--white); border-radius:var(--rl); padding:28px; max-width:480px; width:100%; box-shadow:var(--sh-lg); position:relative; animation:slideUp .2s ease; }
+    @keyframes slideUp { from{transform:translateY(12px);opacity:0} to{transform:translateY(0);opacity:1} }
+    .modal-close { position:absolute; top:14px; right:14px; background:var(--bg); border:none; width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center; transition:background .15s; color:var(--sub); font-family:inherit; }
+    .modal-close:hover { background:var(--border); }
+    .modal-head { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:6px; padding-right:36px; }
+    .modal-goal { font-size:20px; font-weight:800; letter-spacing:-.3px; }
+    .modal-delta-chip { background:var(--green-bg); color:var(--green); font-size:18px; font-weight:800; padding:3px 14px; border-radius:20px; }
+    .modal-sub { font-size:13px; color:var(--sub); margin-bottom:20px; }
+    .reason-list { display:flex; flex-direction:column; gap:10px; max-height:340px; overflow-y:auto; }
+    .reason-item { padding:13px 14px; background:var(--bg); border-radius:var(--r); border-left:3px solid var(--blue); font-size:13px; line-height:1.65; }
+    .reason-lbl { font-size:11px; font-weight:700; color:var(--sub); text-transform:uppercase; letter-spacing:.5px; margin-bottom:5px; }
 
-    /* ── utils ── */
-    [hidden] { display: none !important; }
-    @media (max-width: 800px) {
-      .dash-grid { grid-template-columns: 1fr; }
-      .dashboard { padding: 14px 16px; }
-      .setup-card { padding: 28px 20px; }
+    [hidden] { display:none !important; }
+    @media(max-width:800px){
+      .dash-grid{grid-template-columns:1fr}
+      .dashboard{padding:14px 16px}
+      .setup-card{padding:28px 20px}
+      .ai-tabs{grid-template-columns:1fr 1fr}
+      .field-row{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════ SETUP SCREEN ═══════════════ -->
+<!-- ══ SETUP ══════════════════════════════════════════════════════════════ -->
 <div id="screen-setup" class="setup-screen">
   <div class="setup-card">
     <div class="setup-logo">📈</div>
     <h1>Persoonlijke Groei Tracker</h1>
     <p class="setup-sub">Stel je nulmeting in en start je groeitraject</p>
 
-    <!-- Goal selector -->
+    <!-- AI PROVIDER -->
+    <div class="form-group">
+      <label class="form-label">Kies je AI</label>
+      <div class="ai-tabs" id="ai-tabs">
+        <button class="ai-tab active" data-provider="ollama" type="button">
+          <span class="ai-tab-icon">🦙</span>
+          <span class="ai-tab-name">Ollama</span>
+          <span class="ai-tab-sub">Lokaal &amp; gratis</span>
+        </button>
+        <button class="ai-tab" data-provider="lmstudio" type="button">
+          <span class="ai-tab-icon">🖥️</span>
+          <span class="ai-tab-name">LM Studio</span>
+          <span class="ai-tab-sub">Lokaal &amp; gratis</span>
+        </button>
+        <button class="ai-tab" data-provider="gemini" type="button">
+          <span class="ai-tab-icon">✨</span>
+          <span class="ai-tab-name">Gemini</span>
+          <span class="ai-tab-sub">Gratis API key</span>
+        </button>
+      </div>
+
+      <!-- Ollama config -->
+      <div id="cfg-ollama" class="ai-config">
+        <p class="ai-config-info">
+          <strong>Installeer Ollama</strong> op <a href="https://ollama.com" target="_blank">ollama.com</a>, daarna run je in een terminal:<br>
+          <code>ollama serve</code> &nbsp;en&nbsp; <code>ollama pull llama3.2</code>
+        </p>
+        <div class="field-row">
+          <div>
+            <label class="form-label" style="margin-bottom:5px">Model</label>
+            <select id="ollama-model">
+              <option value="llama3.2">llama3.2 (aanbevolen)</option>
+              <option value="llama3.1">llama3.1</option>
+              <option value="mistral">mistral</option>
+              <option value="phi4">phi4</option>
+              <option value="gemma3">gemma3</option>
+              <option value="qwen2.5">qwen2.5</option>
+              <option value="custom">Aangepast model...</option>
+            </select>
+          </div>
+          <div id="ollama-custom-wrap" hidden>
+            <label class="form-label" style="margin-bottom:5px">Model naam</label>
+            <input type="text" id="ollama-custom-model" placeholder="bijv. deepseek-r1:7b" />
+          </div>
+        </div>
+      </div>
+
+      <!-- LM Studio config -->
+      <div id="cfg-lmstudio" class="ai-config" hidden>
+        <p class="ai-config-info">
+          <strong>Open LM Studio</strong> (<a href="https://lmstudio.ai" target="_blank">lmstudio.ai</a>), laad een model en start de <strong>Local Server</strong> via het server-icoon.<br>
+          De app verbindt automatisch met <code>http://localhost:1234</code>.
+        </p>
+      </div>
+
+      <!-- Gemini config -->
+      <div id="cfg-gemini" class="ai-config" hidden>
+        <p class="ai-config-info">
+          Gratis key aanmaken op <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a> — geen betaling vereist.
+        </p>
+        <div class="field-row">
+          <div>
+            <label class="form-label" style="margin-bottom:5px">API Key</label>
+            <input type="password" id="gemini-key" placeholder="AIza..." />
+          </div>
+          <div>
+            <label class="form-label" style="margin-bottom:5px">Model</label>
+            <select id="gemini-model">
+              <option value="gemini-2.0-flash">gemini-2.0-flash (snel)</option>
+              <option value="gemini-1.5-flash">gemini-1.5-flash</option>
+              <option value="gemini-1.5-pro">gemini-1.5-pro (slimmer)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GOAL SELECTOR -->
     <div class="form-group">
       <label class="form-label">Leerdoelen</label>
       <div class="multi-select">
@@ -293,17 +248,10 @@
       <div id="tag-row" class="tag-row"></div>
     </div>
 
-    <!-- Baseline sliders -->
+    <!-- BASELINE SLIDERS -->
     <div id="scores-section" class="form-group" hidden>
       <label class="form-label">Nulmeting (0–100)</label>
       <div id="score-list" class="score-list"></div>
-    </div>
-
-    <!-- API key -->
-    <div class="form-group">
-      <label class="form-label">Anthropic API Key</label>
-      <input id="api-key" class="api-input" type="password" placeholder="sk-ant-..." />
-      <span class="form-hint">Alleen lokaal gebruikt — nooit opgeslagen of verstuurd</span>
     </div>
 
     <div id="setup-error" class="error-box" hidden></div>
@@ -311,46 +259,38 @@
   </div>
 </div>
 
-<!-- ═══════════════ DASHBOARD SCREEN ═══════════════ -->
+<!-- ══ DASHBOARD ═══════════════════════════════════════════════════════════ -->
 <div id="screen-dashboard" hidden>
   <header class="app-header">
     <span style="font-size:20px">📈</span>
     <h1>Persoonlijke Groei Tracker</h1>
     <div id="header-total" class="header-total">Gemiddeld: 0 / 100</div>
   </header>
-
   <div class="dashboard">
     <div class="dash-grid">
-      <!-- Spider chart -->
       <div class="card">
         <div class="card-title">🕸 Groei overzicht</div>
-        <div class="spider-wrap">
-          <canvas id="radar-chart"></canvas>
-        </div>
+        <div class="spider-wrap"><canvas id="radar-chart"></canvas></div>
       </div>
-
-      <!-- Stat bars -->
       <div class="card">
         <div class="card-title">📊 Leerdoelen</div>
         <div id="stat-bars" class="stat-bars"></div>
       </div>
     </div>
-
-    <!-- Upload zone -->
     <div class="upload-card">
       <div class="card-title">📁 Bestanden uploaden &amp; analyseren</div>
       <div id="upload-drop" class="upload-drop">
-        <input id="file-input" type="file" multiple accept=".txt,.md,.csv,.json,.html,.log,.xml" style="display:none" />
+        <input id="file-input" type="file" multiple accept=".txt,.md,.csv,.json,.html,.log,.xml,.pdf,.docx,.doc" style="display:none" />
         <div class="upload-icon">📄</div>
         <p><strong>Sleep bestanden hiernaartoe</strong> of klik om te bladeren</p>
-        <small>Tekstbestanden: .txt, .md, .csv, .json — meerdere uploads mogelijk</small>
+        <small>Ondersteund: .txt · .md · .pdf · .docx · .csv · .json — meerdere uploads mogelijk</small>
       </div>
       <div id="file-list" class="file-list"></div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ MODAL ═══════════════ -->
+<!-- ══ MODAL ═══════════════════════════════════════════════════════════════ -->
 <div id="modal-overlay" class="modal-overlay" hidden>
   <div id="modal-box" class="modal">
     <button id="modal-close" class="modal-close" type="button">×</button>
@@ -363,171 +303,222 @@
   </div>
 </div>
 
-<!-- Chart.js via CDN -->
+<!-- Libraries via CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
+
 <script>
 'use strict';
 
-// ── Constants ──────────────────────────────────────────────────────────────
-const GOALS = [
-  'Communicatie', 'Samenwerking', 'Probleemoplossing', 'Leiderschap',
-  'Creativiteit', 'Zelfreflectie', 'Initiatief', 'Vakkennis'
+// ── Learning goals (grouped) ───────────────────────────────────────────────
+const GOAL_CATEGORIES = [
+  { cat: 'Communicatie & Taal', goals: [
+    'Mondelinge communicatie', 'Schriftelijke communicatie', 'Presenteren',
+    'Actief luisteren', 'Feedback geven & ontvangen', 'Rapportage & documentatie'
+  ]},
+  { cat: 'Samenwerking & Sociaal', goals: [
+    'Teamwork & samenwerking', 'Leiderschap', 'Conflicthantering',
+    'Netwerken', 'Empathie & begrip', 'Assertiviteit', 'Vergaderen & overleggen'
+  ]},
+  { cat: 'Professioneel & Analytisch', goals: [
+    'Probleemoplossing', 'Analytisch denken', 'Vakkennis & expertise',
+    'Projectmanagement', 'Tijdmanagement & plannen', 'Prioriteiten stellen',
+    'Besluitvorming', 'Kwaliteitsdenken', 'Onderzoeksvaardigheden'
+  ]},
+  { cat: 'Persoonlijke Groei', goals: [
+    'Zelfreflectie', 'Creativiteit & innovatie', 'Initiatief & proactiviteit',
+    'Doorzettingsvermogen', 'Stressmanagement', 'Groeimindset',
+    'Zelforganisatie', 'Ethisch handelen', 'Omgaan met verandering'
+  ]},
+  { cat: 'Digitaal & Technisch', goals: [
+    'Digitale vaardigheden', 'Data-analyse', 'Programmeren & technologie',
+    'Online communicatie', 'Informatiebeveiliging & privacy'
+  ]}
 ];
+const ALL_GOALS = GOAL_CATEGORIES.flatMap(c => c.goals);
 
-// ── State ──────────────────────────────────────────────────────────────────
+// ── AI Provider config ─────────────────────────────────────────────────────
+const PROVIDERS = {
+  ollama:   { url: 'http://localhost:11434/v1/chat/completions', key: 'ollama' },
+  lmstudio: { url: 'http://localhost:1234/v1/chat/completions',  key: 'lm-studio' },
+  gemini:   { url: 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', key: '' },
+};
+
+// ── App State ──────────────────────────────────────────────────────────────
 const S = {
-  selected: [],   // goal names chosen by user
-  sliders: {},    // { goal: value } — live slider values in setup
-  baseline: {},   // { goal: value } — saved on start
-  current: {},    // { goal: value } — grows with uploads
-  reasons: {},    // { goal: [string, ...] }
+  provider: 'ollama',
+  model: 'llama3.2',
   apiKey: '',
+  selected: [],
+  sliders: {},
+  baseline: {},
+  current: {},
+  reasons: {},
   chart: null,
   ddOpen: false,
 };
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 const $ = id => document.getElementById(id);
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
 
 // ── SETUP ──────────────────────────────────────────────────────────────────
 function initSetup() {
-  // Build dropdown items
-  $('ms-dropdown').innerHTML = GOALS.map(g =>
-    `<label class="goal-opt">
-       <input type="checkbox" value="${g}" />
-       <span>${g}</span>
-     </label>`
-  ).join('');
+  buildDropdown();
+  bindAiTabs();
+  bindDropdown();
+  bindOllamaModel();
+  $('start-btn').addEventListener('click', handleStart);
+}
 
-  // Toggle dropdown
+function buildDropdown() {
+  $('ms-dropdown').innerHTML = GOAL_CATEGORIES.map(({ cat, goals }) =>
+    `<div class="ms-cat">${cat}</div>` +
+    goals.map(g =>
+      `<label class="goal-opt">
+         <input type="checkbox" value="${g}" />
+         <span>${g}</span>
+       </label>`
+    ).join('')
+  ).join('');
+}
+
+function bindAiTabs() {
+  $('ai-tabs').addEventListener('click', e => {
+    const tab = e.target.closest('.ai-tab');
+    if (!tab) return;
+    S.provider = tab.dataset.provider;
+    document.querySelectorAll('.ai-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    ['ollama','lmstudio','gemini'].forEach(p =>
+      $('cfg-' + p).hidden = (p !== S.provider));
+  });
+}
+
+function bindOllamaModel() {
+  $('ollama-model').addEventListener('change', function() {
+    const custom = this.value === 'custom';
+    $('ollama-custom-wrap').hidden = !custom;
+    S.model = custom ? '' : this.value;
+  });
+}
+
+function bindDropdown() {
   $('ms-trigger').addEventListener('click', e => {
     e.stopPropagation();
     S.ddOpen = !S.ddOpen;
     $('ms-dropdown').hidden = !S.ddOpen;
     $('ms-chevron').textContent = S.ddOpen ? '▲' : '▼';
   });
-
-  // Close dropdown on outside click
   document.addEventListener('click', () => {
-    if (S.ddOpen) {
-      S.ddOpen = false;
-      $('ms-dropdown').hidden = true;
-      $('ms-chevron').textContent = '▼';
-    }
+    if (S.ddOpen) { S.ddOpen = false; $('ms-dropdown').hidden = true; $('ms-chevron').textContent = '▼'; }
   });
-
-  // Goal checkboxes
   $('ms-dropdown').addEventListener('change', e => {
     const g = e.target.value;
-    if (e.target.checked) {
-      if (!S.selected.includes(g)) { S.selected.push(g); S.sliders[g] = 50; }
-    } else {
-      S.selected = S.selected.filter(x => x !== g);
-      delete S.sliders[g];
-    }
-    renderSetupSelections();
+    if (e.target.checked) { if (!S.selected.includes(g)) { S.selected.push(g); S.sliders[g] = 50; } }
+    else { S.selected = S.selected.filter(x => x !== g); delete S.sliders[g]; }
+    renderSetup();
   });
-
-  $('start-btn').addEventListener('click', handleStart);
 }
 
-function renderSetupSelections() {
-  const count = S.selected.length;
-  $('ms-label').textContent = count === 0
-    ? 'Kies je leerdoelen...'
-    : `${count} leerdoel${count > 1 ? 'en' : ''} geselecteerd`;
-
-  // Tags
+function renderSetup() {
+  const n = S.selected.length;
+  $('ms-label').textContent = n === 0 ? 'Kies je leerdoelen...' : `${n} leerdoel${n > 1 ? 'en' : ''} geselecteerd`;
   $('tag-row').innerHTML = S.selected.map(g =>
     `<span class="tag">${g}<button class="tag-x" data-goal="${g}" type="button">×</button></span>`
   ).join('');
-
-  // Score sliders
-  if (count > 0) {
+  if (n > 0) {
     $('scores-section').removeAttribute('hidden');
     $('score-list').innerHTML = S.selected.map(g =>
       `<div class="score-row">
          <span class="score-name">${g}</span>
          <div class="slider-wrap">
            <input type="range" min="0" max="100" value="${S.sliders[g] ?? 50}" data-goal="${g}" />
-           <span class="score-num" id="sn-${g}">${S.sliders[g] ?? 50}</span>
+           <span class="score-num" id="sn-${g.replace(/[^a-z0-9]/gi,'_')}">${S.sliders[g] ?? 50}</span>
          </div>
        </div>`
     ).join('');
-
-    // Slider events
     $('score-list').querySelectorAll('input[type=range]').forEach(el =>
       el.addEventListener('input', function() {
         S.sliders[this.dataset.goal] = +this.value;
-        $('sn-' + this.dataset.goal).textContent = this.value;
+        const id = 'sn-' + this.dataset.goal.replace(/[^a-z0-9]/gi,'_');
+        const el2 = $(id); if (el2) el2.textContent = this.value;
       })
     );
-  } else {
-    $('scores-section').hidden = true;
-  }
+  } else { $('scores-section').hidden = true; }
 }
 
-// Remove goal via tag ×
+// Tag × remove
 document.addEventListener('click', e => {
   const btn = e.target.closest('.tag-x');
   if (!btn) return;
   const g = btn.dataset.goal;
   S.selected = S.selected.filter(x => x !== g);
   delete S.sliders[g];
-  const cb = $('ms-dropdown').querySelector(`input[value="${g}"]`);
+  const cb = $('ms-dropdown').querySelector(`input[value="${CSS.escape(g)}"]`);
   if (cb) cb.checked = false;
-  renderSetupSelections();
+  renderSetup();
 });
 
+function resolveAiConfig() {
+  if (S.provider === 'ollama') {
+    const sel = $('ollama-model').value;
+    S.model  = sel === 'custom' ? ($('ollama-custom-model').value.trim() || 'llama3.2') : sel;
+    S.apiKey = 'ollama';
+    return PROVIDERS.ollama.url;
+  }
+  if (S.provider === 'lmstudio') {
+    S.model  = ''; // LM Studio picks loaded model automatically
+    S.apiKey = 'lm-studio';
+    return PROVIDERS.lmstudio.url;
+  }
+  if (S.provider === 'gemini') {
+    S.model  = $('gemini-model').value;
+    S.apiKey = $('gemini-key').value.trim();
+    return PROVIDERS.gemini.url;
+  }
+  return '';
+}
+
 function handleStart() {
-  const apiKey = $('api-key').value.trim();
   const err = $('setup-error');
-
   if (S.selected.length === 0) { err.textContent = 'Selecteer minimaal één leerdoel.'; err.hidden = false; return; }
-  if (!apiKey) { err.textContent = 'Vul je Anthropic API key in.'; err.hidden = false; return; }
+  if (S.provider === 'gemini' && !$('gemini-key').value.trim()) {
+    err.textContent = 'Voer je Gemini API key in.'; err.hidden = false; return;
+  }
   err.hidden = true;
-
-  S.apiKey = apiKey;
+  S.apiUrl  = resolveAiConfig();
   S.baseline = { ...S.sliders };
   S.current  = { ...S.sliders };
   S.reasons  = Object.fromEntries(S.selected.map(g => [g, []]));
-
   $('screen-setup').hidden = true;
   $('screen-dashboard').removeAttribute('hidden');
   initDashboard();
 }
 
-// ── DASHBOARD ─────────────────────────────────────────────────────────────
-function initDashboard() {
-  renderBars();
-  buildChart();
-  refreshHeader();
-  initUpload();
-}
+// ── DASHBOARD ──────────────────────────────────────────────────────────────
+function initDashboard() { renderBars(); buildChart(); refreshHeader(); initUpload(); }
 
-function delta(g) { return (S.current[g] ?? 0) - (S.baseline[g] ?? 0); }
+const delta = g => (S.current[g] ?? 0) - (S.baseline[g] ?? 0);
 
 function renderBars() {
   $('stat-bars').innerHTML = S.selected.map(g => {
-    const sc = S.current[g] ?? 0;
-    const d  = delta(g);
-    return `
-      <div class="stat-bar">
-        <div class="sbar-top">
-          <span class="sbar-name">${g}</span>
-          <div class="sbar-right">
-            <span class="sbar-score">${sc}</span>
-            ${d > 0
-              ? `<button class="delta-badge" data-goal="${g}" type="button">+${d}</button>`
-              : ''}
-          </div>
+    const sc = S.current[g] ?? 0, d = delta(g);
+    return `<div class="stat-bar">
+      <div class="sbar-top">
+        <span class="sbar-name">${g}</span>
+        <div class="sbar-right">
+          <span class="sbar-score">${sc}</span>
+          ${d > 0 ? `<button class="delta-badge" data-goal="${g}" type="button">+${d}</button>` : ''}
         </div>
-        <div class="sbar-track"><div class="sbar-fill" style="width:${sc}%"></div></div>
-      </div>`;
+      </div>
+      <div class="sbar-track"><div class="sbar-fill" style="width:${sc}%"></div></div>
+    </div>`;
   }).join('');
 }
 
-// Delta badge → open modal
 document.addEventListener('click', e => {
   const btn = e.target.closest('.delta-badge');
   if (btn) openModal(btn.dataset.goal);
@@ -538,46 +529,28 @@ function refreshHeader() {
   $('header-total').textContent = `Gemiddeld: ${avg} / 100`;
 }
 
-// Chart.js radar
 function buildChart() {
-  const ctx = $('radar-chart').getContext('2d');
   if (S.chart) { S.chart.destroy(); }
-  S.chart = new Chart(ctx, {
+  S.chart = new Chart($('radar-chart').getContext('2d'), {
     type: 'radar',
     data: {
       labels: S.selected,
-      datasets: [{
-        data: S.selected.map(g => S.current[g] ?? 0),
-        backgroundColor: 'rgba(0,82,204,.13)',
-        borderColor: '#0052CC',
-        borderWidth: 2.5,
-        pointBackgroundColor: '#0052CC',
-        pointBorderColor: '#fff',
-        pointBorderWidth: 2,
-        pointRadius: 5,
-        pointHoverRadius: 7,
-      }]
+      datasets: [{ data: S.selected.map(g => S.current[g] ?? 0),
+        backgroundColor:'rgba(0,82,204,.13)', borderColor:'#0052CC', borderWidth:2.5,
+        pointBackgroundColor:'#0052CC', pointBorderColor:'#fff', pointBorderWidth:2,
+        pointRadius:5, pointHoverRadius:7 }]
     },
     options: {
-      scales: {
-        r: {
-          min: 0, max: 100,
-          ticks: { stepSize: 20, display: false },
-          grid: { color: 'rgba(0,82,204,.1)' },
-          angleLines: { color: 'rgba(0,82,204,.15)' },
-          pointLabels: { font: { size: 12, family: 'Inter', weight: '600' }, color: '#172B4D' }
-        }
+      scales: { r: { min:0, max:100,
+        ticks:{stepSize:20,display:false},
+        grid:{color:'rgba(0,82,204,.1)'},
+        angleLines:{color:'rgba(0,82,204,.15)'},
+        pointLabels:{font:{size:11,family:'Inter',weight:'600'},color:'#172B4D'}
+      }},
+      plugins: { legend:{display:false},
+        tooltip:{ callbacks:{label:c=>` ${c.raw}/100`}, backgroundColor:'#172B4D', padding:8, cornerRadius:6 }
       },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: { label: c => ` ${c.raw} / 100` },
-          backgroundColor: '#172B4D',
-          padding: 8, cornerRadius: 6
-        }
-      },
-      animation: { duration: 500, easing: 'easeInOutQuart' },
-      maintainAspectRatio: true
+      animation:{duration:500,easing:'easeInOutQuart'}, maintainAspectRatio:true
     }
   });
 }
@@ -588,30 +561,66 @@ function updateChart() {
   S.chart.update();
 }
 
-// ── UPLOAD ────────────────────────────────────────────────────────────────
+// ── FILE READING ───────────────────────────────────────────────────────────
+function readAsText(file) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = e => res(e.target.result);
+    r.onerror = rej;
+    r.readAsText(file, 'UTF-8');
+  });
+}
+
+function readAsBuffer(file) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = e => res(e.target.result);
+    r.onerror = rej;
+    r.readAsArrayBuffer(file);
+  });
+}
+
+async function readPdf(file) {
+  const buf = await readAsBuffer(file);
+  const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+  let out = '';
+  for (let i = 1; i <= Math.min(pdf.numPages, 30); i++) {
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    out += content.items.map(item => item.str).join(' ') + '\n';
+  }
+  return out;
+}
+
+async function readDocx(file) {
+  const buf = await readAsBuffer(file);
+  const result = await mammoth.extractRawText({ arrayBuffer: buf });
+  return result.value;
+}
+
+async function extractText(file) {
+  const ext = file.name.split('.').pop().toLowerCase();
+  if (ext === 'pdf')  return readPdf(file);
+  if (ext === 'docx' || ext === 'doc') return readDocx(file);
+  return readAsText(file); // txt, md, csv, json, etc.
+}
+
+// ── UPLOAD ─────────────────────────────────────────────────────────────────
 function initUpload() {
   const drop  = $('upload-drop');
   const input = $('file-input');
-
   drop.addEventListener('click', () => input.click());
   input.addEventListener('change', () => { processFiles(input.files); input.value = ''; });
   drop.addEventListener('dragover',  e => { e.preventDefault(); drop.classList.add('drag-over'); });
   drop.addEventListener('dragleave', () => drop.classList.remove('drag-over'));
-  drop.addEventListener('drop', e => {
-    e.preventDefault();
-    drop.classList.remove('drag-over');
-    processFiles(e.dataTransfer.files);
-  });
+  drop.addEventListener('drop', e => { e.preventDefault(); drop.classList.remove('drag-over'); processFiles(e.dataTransfer.files); });
 }
 
-function processFiles(list) {
-  Array.from(list).forEach(analyzeFile);
-}
+function processFiles(list) { Array.from(list).forEach(analyzeFile); }
 
 function addFileRow(id, name) {
   const row = document.createElement('div');
-  row.className = 'file-row';
-  row.id = 'fr-' + id;
+  row.className = 'file-row'; row.id = 'fr-' + id;
   row.innerHTML = `<span>📄</span>
     <span class="file-name" title="${name}">${name}</span>
     <div class="spinner" id="sp-${id}"></div>
@@ -620,8 +629,7 @@ function addFileRow(id, name) {
 }
 
 function setStatus(id, cls, txt) {
-  const sp = $('sp-' + id);
-  const fb = $('fb-' + id);
+  const sp = $('sp-' + id), fb = $('fb-' + id);
   if (sp) sp.style.display = cls === 'analyzing' ? '' : 'none';
   if (fb) { fb.className = 'fbadge ' + cls; fb.textContent = txt; }
 }
@@ -629,119 +637,100 @@ function setStatus(id, cls, txt) {
 async function analyzeFile(file) {
   const id = Date.now() + '-' + Math.random().toString(36).slice(2);
   addFileRow(id, file.name);
-
   try {
-    const text = await readText(file);
-    const excerpt = text.slice(0, 3000);
+    const rawText = await extractText(file);
+    const excerpt = rawText.replace(/\s+/g, ' ').trim().slice(0, 4000);
+    if (!excerpt) throw new Error('Bestand lijkt leeg of onleesbaar');
+
     const goals = S.selected;
+    const prompt =
+`Je bent een objectieve leercoach. Analyseer de onderstaande tekst en bepaal op welke leerdoelen de auteur aantoonbare groei of competentie laat zien.
 
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': S.apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-calls': 'true',
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        messages: [{
-          role: 'user',
-          content:
-`Je bent een coach die persoonlijke groei beoordeelt.
-
-Analyseer de onderstaande tekst en bepaal hoeveel groei de auteur heeft laten zien op elk van de volgende leerdoelen: ${goals.join(', ')}.
+Beschikbare leerdoelen: ${goals.join(' | ')}
 
 TEKST:
 """
 ${excerpt}
 """
 
-Geef ALLEEN een JSON-object terug, zonder extra tekst. Gebruik dit exacte formaat:
-{
-  "scores": { "Leerdoelnaam": <groeiPunten als integer> },
-  "reasons": { "Leerdoelnaam": "Uitleg waarom je deze punten hebt toegekend" }
-}
+Geef ALLEEN een geldig JSON-object terug, zonder extra tekst of codeblokken. Formaat:
+{"scores":{"Leerdoelnaam":punten},"reasons":{"Leerdoelnaam":"Korte uitleg"}}
 
 Regels:
-- Vermeld alleen leerdoelen waarop aantoonbare groei zichtbaar is
-- Groei per leerdoel: realistische waarden tussen 1 en 15 punten
-- Gebruik ALLEEN leerdoelen uit deze lijst: ${goals.join(', ')}`
-        }]
-      })
-    });
+- Alleen leerdoelen uit de bovenstaande lijst
+- Groei per leerdoel: 1–15 punten (realistisch en onderbouwd)
+- Vermeld alleen leerdoelen waarop iets aantoonbaar is
+- JSON must be valid`;
 
+    let body, headers;
+    if (S.provider === 'gemini') {
+      headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${S.apiKey}` };
+      body = JSON.stringify({ model: S.model, max_tokens: 800, messages: [{ role: 'user', content: prompt }] });
+    } else {
+      // Ollama / LM Studio — OpenAI format
+      headers = { 'Content-Type': 'application/json' };
+      body = JSON.stringify({
+        model: S.model || undefined,
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 800,
+        stream: false
+      });
+    }
+
+    const res = await fetch(S.apiUrl, { method: 'POST', headers, body });
     if (!res.ok) {
       const j = await res.json().catch(() => ({}));
-      throw new Error(j?.error?.message || `API fout ${res.status}`);
+      const msg = j?.error?.message || `HTTP ${res.status}`;
+      if (res.status === 0 || msg.includes('fetch')) throw new Error('Kan AI niet bereiken — is Ollama/LM Studio gestart?');
+      throw new Error(msg);
     }
 
     const data = await res.json();
-    const raw  = data.content?.[0]?.text ?? '';
+    const raw  = data.choices?.[0]?.message?.content ?? data.content?.[0]?.text ?? '';
     const m    = raw.match(/\{[\s\S]*\}/);
-    if (!m) throw new Error('Geen JSON in het antwoord');
+    if (!m) throw new Error('AI gaf geen geldige JSON terug');
 
     const parsed = JSON.parse(m[0]);
     applyAnalysis(parsed.scores ?? {}, parsed.reasons ?? {});
     setStatus(id, 'done', '✓ Klaar');
-
   } catch (err) {
     console.error(err);
-    setStatus(id, 'error', '✗ ' + (err.message || 'Fout'));
+    let msg = err.message || 'Onbekende fout';
+    if (msg.includes('Failed to fetch') || msg.includes('NetworkError') || msg.includes('ECONNREFUSED')) {
+      msg = S.provider === 'gemini' ? 'Geen verbinding — controleer je API key' : `${S.provider === 'ollama' ? 'Ollama' : 'LM Studio'} niet bereikbaar — is de server gestart?`;
+    }
+    setStatus(id, 'error', '✗ ' + msg);
   }
-}
-
-function readText(file) {
-  return new Promise((res, rej) => {
-    const r = new FileReader();
-    r.onload  = e => res(e.target.result);
-    r.onerror = rej;
-    r.readAsText(file, 'UTF-8');
-  });
 }
 
 function applyAnalysis(scores, reasons) {
   for (const [g, pts] of Object.entries(scores)) {
-    if (S.selected.includes(g) && typeof pts === 'number' && pts > 0) {
+    if (S.selected.includes(g) && typeof pts === 'number' && pts > 0)
       S.current[g] = Math.min(100, (S.current[g] ?? 0) + pts);
-    }
   }
   for (const [g, txt] of Object.entries(reasons)) {
-    if (S.selected.includes(g)) {
-      S.reasons[g] = [...(S.reasons[g] ?? []), txt];
-    }
+    if (S.selected.includes(g)) S.reasons[g] = [...(S.reasons[g] ?? []), txt];
   }
-  renderBars();
-  updateChart();
-  refreshHeader();
+  renderBars(); updateChart(); refreshHeader();
 }
 
-// ── MODAL ─────────────────────────────────────────────────────────────────
+// ── MODAL ──────────────────────────────────────────────────────────────────
 function openModal(goal) {
-  const d = delta(goal);
-  if (d <= 0) return;
-
+  const d = delta(goal); if (d <= 0) return;
   $('modal-goal').textContent  = goal;
   $('modal-delta').textContent = '+' + d;
-
   const list = S.reasons[goal] ?? [];
   $('modal-reasons').innerHTML = list.length === 0
     ? '<p style="color:var(--sub);font-size:13px">Nog geen analyses beschikbaar.</p>'
-    : list.map((r, i) =>
-        `<div class="reason-item"><div class="reason-lbl">Analyse ${i + 1}</div>${r}</div>`
-      ).join('');
-
+    : list.map((r, i) => `<div class="reason-item"><div class="reason-lbl">Analyse ${i+1}</div>${r}</div>`).join('');
   $('modal-overlay').removeAttribute('hidden');
 }
-
 function closeModal() { $('modal-overlay').hidden = true; }
-
 $('modal-close').addEventListener('click', closeModal);
 $('modal-overlay').addEventListener('click', e => { if (e.target === $('modal-overlay')) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-// ── Boot ──────────────────────────────────────────────────────────────────
+// ── Boot ───────────────────────────────────────────────────────────────────
 initSetup();
 </script>
 </body>
